@@ -31,6 +31,7 @@ app.use(serve(__dirname + '/public'));
 // handle uploads
 
 app.use(function *(next){
+
   // ignore non-POSTs
   if ('POST' != this.method) return yield next;
 
@@ -39,7 +40,7 @@ app.use(function *(next){
   var part;
 
   while (part = yield parts) {
-    var stream = fs.createWriteStream(path.join(os.tmpdir(), Math.random().toString()));
+    var stream = fs.createWriteStream(path.join(os.tmpdir(), Math.random() + 'test.zip'));
     part.pipe(stream);
     console.log('uploading %s -> %s', part.filename, stream.path);
   }

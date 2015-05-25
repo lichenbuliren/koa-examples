@@ -1,9 +1,10 @@
-<html>
-<head>
-  <title>Blog</title>
-</head>
-<body>
-  {% for post in posts %}
-  {% endfor %}
-</body>
-</html>
+extends ./layout
+
+block content
+    section
+        .container
+            ul
+                each post in posts
+                    li
+                        p #{post.title}
+                        p #{post.content}
